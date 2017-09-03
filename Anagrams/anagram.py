@@ -10,6 +10,10 @@ def anagram():
     params = parse_input()
     s = params[0]
     t = params[1]
+    # Sort so we can compare the two strings
+    s.sort()
+    t.sort()
+    # Until the two strings are the same
     while s != t:
         for letter in s:
             if s.count(letter) > t.count(letter):
