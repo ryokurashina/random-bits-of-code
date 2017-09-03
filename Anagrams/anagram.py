@@ -8,37 +8,19 @@ def anagram():
     # Initialize count of removed letters
     count = 0
     params = parse_input()
-    # n is the best case scenario
-    # n1 = params[0]
-    # n2 = params[1]
-    # n = max([len(a), len(b)])
-    # Take the bigger one and start stripping off letters.
-    len_params = list(map(len, params))
-    ind = len_params.index(max(len_params))
-    s = params.pop(ind)
-    s.sort()
-    t = params[0]
-    t.sort()
+    s = params[0]
+    t = params[1]
     while s != t:
         for letter in s:
-            if letter not in t:
-                s.remove(letter)
-                count += 1
+            if s.count(letter) > t.count(letter):
+                for i in range(s.count(letter)-t.count(letter)):
+                    s.remove(letter)
+                    count += 1
         for letter in t:
-            if letter not in s:
-                t.remove(letter)
-                count += 1
-        # Check for repeats
-
-        params = [s, t]
-        len_params = list(map(len, params))
-        print(len_params)
-        ind = len_params.index(max(len_params))
-        s = params.pop(ind)
-        s.sort()
-        print(s, t)
-        t = params[0]
-        t.sort()
+            if t.count(letter) > s.count(letter):
+                for i in range(t.count(letter)-s.count(letter)):
+                    t.remove(letter)
+                    count += 1
     print(count)
 
 
